@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Javascript</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body>
+
+	<h1>Shoppinglist</h1>
+	<p id="first">Get it Done</p>
+	<p class="second">No excuses</p>
+	<input id="userinput" type="input" placeholder="enter item"><br>
+	<button id="enter">Click Me</button>
+	<button id="clear">Clear</button>
+	<button id="del">del</button>
+
+	<ul>
+	</ul>
+
+<script>
+	var button = document.getElementById("enter");
+	var button2 = document.getElementById("clear");
+	var button3 = document.getElementById("del");
+	var input = document.getElementById("userinput");
+	var ul = document.querySelector("ul");
+	var button4 = document.getElementById("iconbtn")
+	var deleteBtn = document.createElement("button")
+
+	function deleteLi() {
+		this.parentElement.remove();
+	}
+
+	button.addEventListener("click",function(){
+		if (input.value.length > 0){
+			var li = document.createElement("li"),
+			  button = document.createElement("button")
+
+			button.innerHTML = '<i class="far fa-trash-alt"></i>'
+			button.addEventListener("click", deleteLi);
+			li.innerHTML = input.value
+			li.appendChild(button)
+			ul.appendChild(li);	
+		}
+
+	});
+
+	button2.addEventListener("click",function(){
+			input.value="";
+	});
+	//Enter to add item to list
+	input.addEventListener("keyup",function(e){
+		if(input.value.length > 0 && e.keyCode==13){
+			var li = document.createElement("li");
+			li.appendChild(document.createTextNode(input.value));
+			ul.appendChild(li);
+	}	
+	});
+
+	//Delete to clear
+	input.addEventListener("keyup",function(b){
+		if(input.value.length > 0 && b.keyCode==46){
+			input.value="";
+		}
+	});
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
